@@ -2,6 +2,13 @@
 
 This Python Project exports data from Amazon ElastiCache for Redis to Amazon S3. It retrieves data from a specified Redis hash key and exports it to S3 as both CSV and JSON files.
 
+## Project Structure
+```bash
+.
+├── README.md
+└── gitlab-ci.yaml
+```
+
 ## Prerequisites
 
 Before running the Project, make sure you have the following:

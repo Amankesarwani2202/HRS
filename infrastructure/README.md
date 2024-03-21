@@ -4,20 +4,34 @@ This repository contains Terraform code to deploy basic infrastructure on AWS us
 
 ## Project Structure
 
-The repository is organized as follows:
+ ```bash
 
-./
-├── modules/
-│ ├── alb/
-│ ├── ecs/
-│ ├── route53/
-│ └── vpc/
-├── main.tf
-├── provider.tf
-├── variables.tf
-├── outputs.tf
+.
 ├── README.md
-└── infrastructure_diagram.png
+├── infrastructure_diagram.png
+├── main.tf
+├── modules
+│   ├── alb
+│   │   ├── main.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   ├── ecs
+│   │   ├── main.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   ├── route53
+│   │   ├── main.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   └── vpc
+│       ├── main.tf
+│       ├── outputs.tf
+│       └── variables.tf
+├── outputs.tf
+├── provider.tf
+└── variables.tf
+    
+  ```
 
 
 - **modules/**: Contains subdirectories for each infrastructure component (ALB, ECS, Route 53, VPC).
