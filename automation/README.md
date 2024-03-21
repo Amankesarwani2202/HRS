@@ -2,6 +2,14 @@
 
 This repository contains the configuration for a CI/CD pipeline designed to automate the building, testing, and deployment of containerized Java applications.
 
+## Project Structure
+
+```bash
+.
+├── README.md
+└── redis_to_s3_exporter.py
+```
+
 ## Pipeline Overview
 
 The CI/CD pipeline consists of the following stages:
