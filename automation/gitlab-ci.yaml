@@ -1,0 +1,40 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  IMAGE_NAME: my-java-app
+
+build:
+  stage: build
+  script:
+    - mvn clean package
+    - docker build -t $IMAGE_NAME .
+
+test:
+  stage: test
+  script:
+    - docker run $IMAGE_NAME mvn test
+
+deploy:
+  stage: deploy
+  script:
+    - |
+      if [[ "$DEPLOY_ENVIRONMENT" == "lambda" ]]; then
+        # Use AWS SAM for serverless deployment to AWS Lambda
+        sam deploy --stack-name my-java-app --template-file template.yaml --capabilities CAPABILITY_IAM
+      elif [[ "$DEPLOY_ENVIRONMENT" == "eks" ]]; then
+        # Deploy to Amazon EKS cluster
+        kubectl apply -f deployment.yaml
+      elif [[ "$DEPLOY_ENVIRONMENT" == "ecs" ]]; then
+        # Deploy to Amazon ECS cluster
+        # Add ECS deployment commands here
+      else
+        echo "Unsupported deployment environment"
+        exit 1
+      fi
+  environment:
+    name: $DEPLOY_ENVIRONMENT
+  only:
+    - master
